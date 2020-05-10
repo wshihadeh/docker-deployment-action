@@ -1,0 +1,36 @@
+name: Docker Deployment
+author: Al-waleed Shihadeh <wshihadeh.dev@gmail.com>
+description: A GitHub Action that supports docker-compose and Docker Swarm deployments
+inputs:
+  remote_docker_host:
+    description: Remote Docker host ie (user@host)
+    required: true
+  ssh_public_key:
+    description: Remote Docker SSH public key
+    required: true
+  ssh_private_key:
+    description: SSH private key used to connect to the docker host
+    required: true
+  deployment_mode:
+    description: Deployment mode either docker-swarm or docker-compose. Default is docker-compose.
+    required: false
+  copy_stack_file:
+    description: Copy stack file to remote server and deploy from the server. Default is false.
+    required: false
+  deploy_path:
+    description: The path where the stack files will be copied to. Default ~/docker-deployment.
+    required: false
+  stack_file_name:
+    description: Docker stack file used. Default is docker-compose.yaml
+    required: false
+  keep_files:
+    description: Number of the files to be kept on the server. Default is 3.
+    required: false
+runs:
+  using: docker
+  image: Dockerfile
+
+branding:
+  icon: send
+  color: green
+
