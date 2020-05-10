@@ -56,6 +56,12 @@ The path where the stack files will be copied to. Default ~/docker-deployment.
 Docker stack file used. Default is docker-compose.yaml
 ### `keep_files`
 Number of the files to be kept on the server. Default is 3.
+### `docker_prune`
+A boolean input to trigger docker prune command.
+### `pre_deployment_command_args`
+The args for the pre deploument command. Applicable only for docker-compose.
+### `pull_images_first`
+Pull docker images before deploying. Applicable only for docker-compose.
 
 ## License
 

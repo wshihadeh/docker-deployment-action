@@ -26,6 +26,15 @@ inputs:
   keep_files:
     description: Number of the files to be kept on the server. Default is 3.
     required: false
+  docker_prune:
+    description: A boolean input to trigger docker prune command.
+    required: false
+  pre_deployment_command_args:
+    description: The args for the pre deploument command.
+    required: false
+  pull_images_first:
+    description: Pull docker images before deploying.
+    required: false
 runs:
   using: docker
   image: Dockerfile
