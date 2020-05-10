@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  proxy:
+    image: traefik:v2.2
+    command:
+      - '--providers.docker=true'
+      - '--entryPoints.web.address=:80'
