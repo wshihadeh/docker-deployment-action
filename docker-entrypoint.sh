@@ -23,6 +23,11 @@ if [ -z "$INPUT_SSH_PRIVATE_KEY" ]; then
     exit 1
 fi
 
+if [ -z "$INPUT_ARGS" ]; then
+  echo "Input input_args is required!"
+  exit 1
+fi
+
 if [ -z "$INPUT_DEPLOY_PATH" ]; then
   INPUT_DEPLOY_PATH=~/docker-deployment
 fi
@@ -87,8 +92,8 @@ if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; th
     execute_ssh "docker-compose -f $INPUT_DEPLOY_PATH/$INPUT_STACK_FILE_NAME $INPUT_PRE_DEPLOYMENT_COMMAND_ARGS" 2>&1
   fi
 
-  execute_ssh ${DEPLOYMENT_COMMAND} "$@" 2>&1
+  execute_ssh ${DEPLOYMENT_COMMAND} "$INPUT_ARGS" 2>&1
 else
   echo "Connecting to $INPUT_REMOTE_DOCKER_HOST..."
-  ${DEPLOYMENT_COMMAND} --log-level debug --host "ssh://$INPUT_REMOTE_DOCKER_HOST" "$@" 2>&1
+  ${DEPLOYMENT_COMMAND} --log-level debug --host "ssh://$INPUT_REMOTE_DOCKER_HOST" "$INPUT_ARGS" 2>&1
 fi

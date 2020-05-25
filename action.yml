@@ -11,6 +11,9 @@ inputs:
   ssh_private_key:
     description: SSH private key used to connect to the docker host
     required: true
+  args:
+    description: Deployment command args.
+    required: true
   deployment_mode:
     description: Deployment mode either docker-swarm or docker-compose. Default is docker-compose.
     required: false
@@ -35,6 +38,7 @@ inputs:
   pull_images_first:
     description: Pull docker images before deploying.
     required: false
+
 runs:
   using: docker
   image: Dockerfile
