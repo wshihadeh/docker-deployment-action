@@ -45,7 +45,13 @@ fi
 case $INPUT_DEPLOYMENT_MODE in
 
   docker-swarm)
-    DEPLOYMENT_COMMAND="docker stack deploy --compose-file $INPUT_DEPLOY_PATH/$INPUT_STACK_FILE_NAME"
+    DEPLOYMENT_COMMAND="docker"
+    STACK_FILE=${INPUT_STACK_FILE_NAME}
+
+    ([[ "$INPUT_COPY_STACK_FILE" = "true" ]] && STACK_FILE="$INPUT_DEPLOY_PATH/$STACK_FILE" ) ||
+    DEPLOYMENT_COMMAND="$DEPLOYMENT_COMMAND --log-level debug --host ssh://$INPUT_REMOTE_DOCKER_HOST"
+
+    DEPLOYMENT_COMMAND="$DEPLOYMENT_COMMAND stack deploy --compose-file $STACK_FILE"
   ;;
 
   *)
@@ -95,5 +101,5 @@ if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; th
   execute_ssh ${DEPLOYMENT_COMMAND} "$INPUT_ARGS" 2>&1
 else
   echo "Connecting to $INPUT_REMOTE_DOCKER_HOST..."
-  ${DEPLOYMENT_COMMAND} --log-level debug --host "ssh://$INPUT_REMOTE_DOCKER_HOST" "$INPUT_ARGS" 2>&1
+  ${DEPLOYMENT_COMMAND} ${INPUT_ARGS} 2>&1
 fi
