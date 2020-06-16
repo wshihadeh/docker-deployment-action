@@ -66,7 +66,7 @@ echo "Registering SSH keys..."
 
 # register the private key with the agent.
 mkdir -p "$HOME/.ssh"
-printf '%s' "$INPUT_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_rsa"
+printf '%s\n' "$INPUT_SSH_PRIVATE_KEY" > "$HOME/.ssh/id_rsa"
 chmod 600 "$HOME/.ssh/id_rsa"
 eval $(ssh-agent)
 ssh-add "$HOME/.ssh/id_rsa"
