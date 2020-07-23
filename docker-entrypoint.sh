@@ -45,8 +45,12 @@ fi
 STACK_FILE=${INPUT_STACK_FILE_NAME}
 DEPLOYMENT_COMMAND_OPTIONS=""
 
-([[ "$INPUT_COPY_STACK_FILE" = "true" ]] && STACK_FILE="$INPUT_DEPLOY_PATH/$STACK_FILE" ) ||
-    DEPLOYMENT_COMMAND_OPTIONS=" --log-level debug --host ssh://$INPUT_REMOTE_DOCKER_HOST"
+
+if [ "$INPUT_COPY_STACK_FILE" == "true" ]; then
+  STACK_FILE="$INPUT_DEPLOY_PATH/$STACK_FILE"
+else
+  DEPLOYMENT_COMMAND_OPTIONS=" --log-level debug --host ssh://$INPUT_REMOTE_DOCKER_HOST"
+fi
 
 case $INPUT_DEPLOYMENT_MODE in
 
@@ -91,15 +95,15 @@ if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; th
   execute_ssh "ls -t $INPUT_DEPLOY_PATH/stacks/docker-stack-* 2>/dev/null |  tail -n +$INPUT_KEEP_FILES | xargs rm --  2>/dev/null || true"
 
   if ! [ -z "$INPUT_PULL_IMAGES_FIRST" ] && [ $INPUT_PULL_IMAGES_FIRST = 'true' ] && [ $INPUT_DEPLOYMENT_MODE = 'docker-compose' ] ; then
-    execute_ssh "docker-compose -f $INPUT_DEPLOY_PATH/$INPUT_STACK_FILE_NAME pull"
+    execute_ssh "${DEPLOYMENT_COMMAND} pull"
   fi
 
   if ! [ -z "$INPUT_PRE_DEPLOYMENT_COMMAND_ARGS" ] && [ $INPUT_DEPLOYMENT_MODE = 'docker-compose' ] ; then
-    execute_ssh "docker-compose -f $INPUT_DEPLOY_PATH/$INPUT_STACK_FILE_NAME $INPUT_PRE_DEPLOYMENT_COMMAND_ARGS" 2>&1
+    execute_ssh "${DEPLOYMENT_COMMAND}  $INPUT_PRE_DEPLOYMENT_COMMAND_ARGS" 2>&1
   fi
 
   execute_ssh ${DEPLOYMENT_COMMAND} "$INPUT_ARGS" 2>&1
 else
-  echo "Connecting to $INPUT_REMOTE_DOCKER_HOST..."
+  echo "Connecting to $INPUT_REMOTE_DOCKER_HOST... Command: ${DEPLOYMENT_COMMAND} ${INPUT_ARGS}"
   ${DEPLOYMENT_COMMAND} ${INPUT_ARGS} 2>&1
 fi

@@ -8,7 +8,7 @@ LABEL 'com.github.actions.description'='supports docker-compose and Docker Swarm
 LABEL 'com.github.actions.icon'='send'
 LABEL 'com.github.actions.color'='green'
 
-RUN apk --no-cache add openssh-client
+RUN apk --no-cache add openssh-client docker-compose
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
