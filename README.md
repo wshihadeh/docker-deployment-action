@@ -46,6 +46,10 @@ Remote Docker SSH public key.
 
 SSH private key used to connect to the docker host
 
+SSH key must be in PEM format (begins with -----BEGIN RSA PRIVATE KEY-----), or you can randomly get _Load key "/HOME/.ssh/id_rsa": invalid format_ error.
+
+Convert it from OPENSSH (key begins with -----BEGIN OPENSSH PRIVATE KEY-----)  format using `ssh-keygen -p -m PEM -f ~/.ssh/id_rsa`
+
 ### `deployment_mode`
 Deployment mode either docker-swarm or docker-compose. Default is docker-compose.
 ### `copy_stack_file`
