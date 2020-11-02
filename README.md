@@ -38,6 +38,10 @@ Arguments to pass to the deployment command either  `docker`  or `docker-compose
 
 Specify Remote Docker host. The input value must be in the follwing format (user@host)
 
+### `remote_docker_port`
+
+Specify Remote Docker ssh port if its not 22 default ie (2222)
+
 ### `ssh_public_key`
 
 Remote Docker SSH public key.
