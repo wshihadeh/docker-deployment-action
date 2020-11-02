@@ -9,6 +9,10 @@ execute_ssh(){
       -o StrictHostKeyChecking=no "$INPUT_REMOTE_DOCKER_HOST" "$@"
 }
 
+if [ -z "$INPUT_REMOTE_DOCKER_PORT" ]; then
+  INPUT_REMOTE_DOCKER_PORT=22
+fi
+
 if [ -z "$INPUT_REMOTE_DOCKER_HOST" ]; then
     echo "Input remote_docker_host is required!"
     exit 1
