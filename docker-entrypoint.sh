@@ -87,6 +87,10 @@ if ! [ -z "$INPUT_DOCKER_PRUNE" ] && [ $INPUT_DOCKER_PRUNE = 'true' ] ; then
   yes | docker --log-level debug --host "ssh://$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT" system prune -a 2>&1
 fi
 
+if ! [ -z "$INPUT_PRE_DEPLOYMENT_STEP_COMMAND" ] ; then
+  execute_ssh ${INPUT_PRE_DEPLOYMENT_STEP_COMMAND}
+fi
+
 if ! [ -z "$INPUT_COPY_STACK_FILE" ] && [ $INPUT_COPY_STACK_FILE = 'true' ] ; then
   execute_ssh "mkdir -p $INPUT_DEPLOY_PATH/stacks || true"
   FILE_NAME="docker-stack-$(date +%Y%m%d%s).yaml"

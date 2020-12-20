@@ -15,6 +15,7 @@ Below is a brief example on how the action can be used:
     ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
     ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
     deployment_mode: docker-swarm
+    pre_deployment_command: docker login
     copy_stack_file: true
     deploy_path: /root/my-deployment
     stack_file_name: docker-compose.yaml
@@ -58,6 +59,10 @@ Convert it from OPENSSH (key begins with -----BEGIN OPENSSH PRIVATE KEY-----)  f
 Deployment mode either docker-swarm or docker-compose. Default is docker-compose.
 ### `copy_stack_file`
 Copy stack file to remote server and deploy from the server. Default is false.
+
+### `pre_deployment_command`
+Command executed before deploying to master (could be e.g. docker login)
+
 ### `deploy_path`
 The path where the stack files will be copied to. Default ~/docker-deployment.
 ### `stack_file_name`

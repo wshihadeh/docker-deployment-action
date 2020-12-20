@@ -24,6 +24,9 @@ inputs:
   copy_stack_file:
     description: Copy stack file to remote server and deploy from the server. Default is false.
     required: false
+  pre_deployment_step_command:
+    description: Command executed on host before executing deployment step
+    required: false
   deploy_path:
     description: The path where the stack files will be copied to. Default ~/docker-deployment.
     required: false
@@ -37,7 +40,7 @@ inputs:
     description: A boolean input to trigger docker prune command.
     required: false
   pre_deployment_command_args:
-    description: The args for the pre deploument command.
+    description: The args for the pre deployment command.
     required: false
   pull_images_first:
     description: Pull docker images before deploying.

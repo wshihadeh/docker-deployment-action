@@ -21,6 +21,7 @@ jobs:
         ssh_private_key: ${{ secrets.PRIVATE_KEY }}
         ssh_public_key: ${{ secrets.PUBLIC_KEY }}
         deployment_mode: docker-compose
+        pre_deployment_step_command: docker help
         copy_stack_file: true
         deploy_path: /root/deployment-test
         stack_file_name: docker-compose.yml
@@ -35,6 +36,7 @@ jobs:
         ssh_private_key: ${{ secrets.PRIVATE_KEY }}
         ssh_public_key: ${{ secrets.PUBLIC_KEY }}
         deployment_mode: docker-compose
+        pre_deployment_step_command: docker help
         copy_stack_file: false
         deploy_path: /root/deployment-test
         stack_file_name: docker-compose.yml
