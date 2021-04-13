@@ -44,7 +44,15 @@ Specify Remote Docker ssh port if its not 22 default ie (2222)
 
 ### `ssh_public_key`
 
-Remote Docker SSH public key.
+Remote Docker SSH public key. 
+
+Do not give the content of `id_rsa.pub`
+
+The content of `~/.ssh/known_hosts` needs to be given here. You can get it by connecting to host once using your own machine. Example:
+
+```
+1.1.1.1 ecdsa-sha2-nistp256 AAAAE2VjZHNhLNTYAAAAIbmlzdHAyNCN5F3TLxUllpSRx8y+9C2uh+lWZDFmAsFMjcz2Zgq4d5F+oGicGaRk=
+```
 
 ### `ssh_private_key`
 
