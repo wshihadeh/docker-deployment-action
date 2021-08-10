@@ -15,7 +15,7 @@ jobs:
       with:
         fetch-depth: 1
     - name: Start Deployment
-      uses: wshihadeh/docker-deployment-action@master
+      uses: gonzalochief/docker-deployment-action@master
       with:
         remote_docker_host: ${{ secrets.HOST }}
         ssh_private_key: ${{ secrets.PRIVATE_KEY }}
@@ -29,7 +29,7 @@ jobs:
         args: -p test up -d
 
     - name: Start Deployment without copy
-      uses: wshihadeh/docker-deployment-action@master
+      uses: gonzalochief/docker-deployment-action@master
       with:
         remote_docker_host: ${{ secrets.HOST }}
         ssh_private_key: ${{ secrets.PRIVATE_KEY }}
