@@ -22,7 +22,7 @@ inputs:
     description: Deployment mode either docker-swarm or docker-compose. Default is docker-compose.
     required: false
   docker_compose_ver:
-    description: Docker-compose version. Default is docker-compose.
+    description: Docker-compose version. Default is v2.
     required: false
   copy_stack_file:
     description: Copy stack file to remote server and deploy from the server. Default is false.
