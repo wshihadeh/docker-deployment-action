@@ -24,7 +24,6 @@ inputs:
   docker_compose_ver:
     description: Sets docker compose version: v1 or v2.
     required: false
-    default: 'v2'
   copy_stack_file:
     description: Copy stack file to remote server and deploy from the server. Default is false.
     required: false
