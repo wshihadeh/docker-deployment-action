@@ -59,11 +59,11 @@ else
 fi
 
 if [ "$INPUT_DEPLOYMENT_MODE" == "docker-compose" ] && [ "$INPUT_DOCKER_COMPOSE_VER" == "v2" ]; then
-  DOCKER_COMP_COMMAND = "docker compose"
+  DOCKER_COMP_COMMAND="docker compose"
 elif [ "$INPUT_DEPLOYMENT_MODE" == "docker-compose" ] && [ "$INPUT_DOCKER_COMPOSE_VER" == "v1" ]; then
-  DOCKER_COMP_COMMAND = "docker-compose"
+  DOCKER_COMP_COMMAND="docker-compose"
 else
-  DOCKER_COMP_COMMAND = "docker compose"
+  DOCKER_COMP_COMMAND="docker compose"
 fi
   
 
