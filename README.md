@@ -82,3 +82,8 @@ Pull docker images before deploying. Applicable only for docker-compose.
 ## License
 
 This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for details.
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
