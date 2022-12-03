@@ -49,6 +49,7 @@ fi
 
 STACK_FILE=${INPUT_STACK_FILE_NAME}
 DEPLOYMENT_COMMAND_OPTIONS=""
+DOCKER_COMP_COMMAND=""
 
 
 if [ "$INPUT_COPY_STACK_FILE" == "true" ]; then
@@ -56,6 +57,15 @@ if [ "$INPUT_COPY_STACK_FILE" == "true" ]; then
 else
   DEPLOYMENT_COMMAND_OPTIONS=" --log-level debug --host ssh://$INPUT_REMOTE_DOCKER_HOST:$INPUT_REMOTE_DOCKER_PORT"
 fi
+
+if [ "$INPUT_DEPLOYMENT_MODE" == "docker-compose" ] && [ "$INPUT_DOCKER_COMPOSE_VER" == "v2" ]; then
+  DOCKER_COMP_COMMAND="docker compose"
+elif [ "$INPUT_DEPLOYMENT_MODE" == "docker-compose" ] && [ "$INPUT_DOCKER_COMPOSE_VER" == "v1" ]; then
+  DOCKER_COMP_COMMAND="docker-compose"
+else
+  DOCKER_COMP_COMMAND="docker compose"
+fi
+  
 
 case $INPUT_DEPLOYMENT_MODE in
 
@@ -65,7 +75,7 @@ case $INPUT_DEPLOYMENT_MODE in
 
   *)
     INPUT_DEPLOYMENT_MODE="docker-compose"
-    DEPLOYMENT_COMMAND="docker-compose $DEPLOYMENT_COMMAND_OPTIONS -f $STACK_FILE"
+    DEPLOYMENT_COMMAND="$DOCKER_COMP_COMMAND $DEPLOYMENT_COMMAND_OPTIONS -f $STACK_FILE"
   ;;
 esac
 
