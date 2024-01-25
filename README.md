@@ -1,6 +1,6 @@
 # Docker Deployment Action
 
-A [GitHub Action](https://github.com/marketplace/actions/docker-deployment) that supports docker-compose and Docker Swarm deployments. [Documentaion Page](https://wshihadeh.github.io/actions/Docker-Deployment/).
+A [GitHub Action](https://github.com/marketplace/actions/docker-deployment) that supports docker-compose and Docker Swarm deployments. [Documentation Page](https://wshihadeh.github.io/actions/Docker-Deployment/).
 
 
 ## Example
