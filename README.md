@@ -19,16 +19,16 @@ Below is a brief example on how the action can be used:
     deploy_path: /root/my-deployment
     stack_file_name: docker-compose.yaml
     keep_files: 5
-    args: my_applicaion
+    args: my_application
 ```
 
 ## Input Configurations
 
-Below are all of the supported inputs. Some inputs are considered sensitive information and it should be stored as secrets.
+Below are all of the supported inputs. Some inputs are considered sensitive information and should be stored as secrets.
 
 ### `args`
 
-Arguments to pass to the deployment command either  `docker`  or `docker-compose`. The actions will automatically generate the follwing commands for each of the cases.
+Arguments to pass to the deployment command either  `docker`  or `docker-compose`. The actions will automatically generate the following commands for each of the cases.
 
 - `docker stack deploy --compose-file $FILE --log-level debug --host $HOST`
 - `docker-compose -f $INPUT_STACK_FILE_NAME`
@@ -36,7 +36,7 @@ Arguments to pass to the deployment command either  `docker`  or `docker-compose
 
 ### `remote_docker_host`
 
-Specify Remote Docker host. The input value must be in the follwing format (user@host)
+Specify Remote Docker host. The input value must be in the following format (user@host)
 
 ### `remote_docker_port`
 
